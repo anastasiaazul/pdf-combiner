@@ -6,8 +6,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import UploadButton from './UploadButton.jsx';
 import { useState } from 'react';
 import Files from './Files.jsx';
-
-
+import axios from 'axios';
 
 const Box = () => {
 
@@ -24,6 +23,12 @@ const Box = () => {
       {
         setFiles([]);
       } 
+    const handleCombine = async () =>
+      {
+        const combined = await axios.post('http://localhost:5000/combine', {files: files})
+        console.log(combined);
+        console.log("combine and download files");
+      }
 
 
   return (
@@ -60,7 +65,7 @@ const Box = () => {
           )}
         </div>
         <div className="flex justify-center">
-          <Button text={"Combine & Download"} color="bg-emerald-700" hover="hover:bg-emerald-500" icon={FaDownload}/>
+          <Button text={"Combine & Download"} color="bg-emerald-700" hover="hover:bg-emerald-500" onClick={handleCombine} icon={FaDownload}/>
         </div>
       </div>
     </div>
