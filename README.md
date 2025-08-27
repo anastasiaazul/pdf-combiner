@@ -2,13 +2,12 @@
 
 ## Overview
 
-**PDF Combiner** is a simple, free, and open-source web app for merging multiple PDF files.  
+**PDF Combiner** is a simple, free web app for merging multiple PDF files.  
 I built this because I was tired of searching for easy PDF combiners online, only to find most were behind paywalls or filled with ads. This project lets you combine PDFs quickly, securely, and without any hidden costs.
 
 ## Features
 
 - Upload multiple PDF files from your computer
-- Arrange and clear files before combining
 - Merge PDFs with a single click
 - Download the combined PDF instantly
 - No file size limits (browser and server memory permitting)
@@ -76,15 +75,3 @@ npm run dev
 - Your PDFs are never stored or shared.
 - Files are processed in memory and deleted after merging.
 
-## License
-
-MIT
-
-## Author
-
-Created by [Your Name]
-
----
-
-**Why?**  
-I wanted a PDF combiner that was truly free and easy to use. If you feel the same, give this project a
