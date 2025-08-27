@@ -7,8 +7,8 @@ const Title = () => {
       <p>To combine multiple PDFs follow the steps below: </p>
       <ol className="list-decimal ml-6">
         <li>Upload your PDF files</li>
-        <li>Arrange the order as needed</li>
         <li>Click the "Combine" button</li>
+        <li>Your combined files will be downloaded </li>
       </ol>
     </div>
   )

@@ -23,12 +23,36 @@ const Box = () => {
       {
         setFiles([]);
       } 
-    const handleCombine = async () =>
-      {
-        const combined = await axios.post('http://localhost:5000/combine', {files: files})
-        console.log(combined);
-        console.log("combine and download files");
-      }
+
+
+    const handleDeleteOneFile = (index) => {
+      const updatedFiles = files.filter((file, i) => i !== index);
+      setFiles(updatedFiles);
+    
+    }
+
+    const handleCombine = async () => {
+      const formData = new FormData();
+      files.forEach(file => formData.append('files', file));
+
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/combine',
+          formData,
+          { responseType: 'blob' }
+        );
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'combined.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error combining files:', error);
+  }
+}
 
 
   return (
@@ -61,7 +85,7 @@ const Box = () => {
       }}>
         {files.length === 0 ? (
           <p >Drag your files here to upload</p>) : (
-            <Files files={files}/>
+            <Files files={files} onClick={handleDeleteOneFile}/>
           )}
         </div>
         <div className="flex justify-center">
