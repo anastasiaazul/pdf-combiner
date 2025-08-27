@@ -25,6 +25,12 @@ const Box = () => {
       } 
 
 
+    const handleDeleteOneFile = (index) => {
+      const updatedFiles = files.filter((file, i) => i !== index);
+      setFiles(updatedFiles);
+    
+    }
+
     const handleCombine = async () => {
       const formData = new FormData();
       files.forEach(file => formData.append('files', file));
@@ -35,17 +41,14 @@ const Box = () => {
           formData,
           { responseType: 'blob' }
         );
-
-        // Create a download link and trigger it
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'combined.pdf'); // Set the filename
+        link.setAttribute('download', 'combined.pdf');
         document.body.appendChild(link);
         link.click();
         link.remove();
         window.URL.revokeObjectURL(url);
-        console.log('Files combined and downloaded successfully');
   } catch (error) {
     console.error('Error combining files:', error);
   }
@@ -82,7 +85,7 @@ const Box = () => {
       }}>
         {files.length === 0 ? (
           <p >Drag your files here to upload</p>) : (
-            <Files files={files}/>
+            <Files files={files} onClick={handleDeleteOneFile}/>
           )}
         </div>
         <div className="flex justify-center">
