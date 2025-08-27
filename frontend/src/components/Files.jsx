@@ -1,7 +1,8 @@
 import React from 'react'
 import { FaFilePdf } from 'react-icons/fa'
+import { GrClose } from "react-icons/gr";
 
-const Files = ({ files }) => {
+const Files = ({ files, onClick }) => {
   return (
     <div className="flex gap-4 justify-start">
       {files.map((file, index) => (
@@ -12,6 +13,7 @@ const Files = ({ files }) => {
           <FaFilePdf className="text-red-500 text-2xl mb-2" />
           <span className="block w-full text-center text-xs truncate">
             {file.name}
+            <GrClose onClick={() => onClick(index)}/>
           </span>
         </div>
       ))}
