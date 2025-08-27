@@ -23,12 +23,33 @@ const Box = () => {
       {
         setFiles([]);
       } 
-    const handleCombine = async () =>
-      {
-        const combined = await axios.post('http://localhost:5000/combine', {files: files})
-        console.log(combined);
-        console.log("combine and download files");
-      }
+
+
+    const handleCombine = async () => {
+      const formData = new FormData();
+      files.forEach(file => formData.append('files', file));
+
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/combine',
+          formData,
+          { responseType: 'blob' }
+        );
+
+        // Create a download link and trigger it
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'combined.pdf'); // Set the filename
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+        console.log('Files combined and downloaded successfully');
+  } catch (error) {
+    console.error('Error combining files:', error);
+  }
+}
 
 
   return (
