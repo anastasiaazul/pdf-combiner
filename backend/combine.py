@@ -15,7 +15,7 @@ def combine_pdfs():
     for file in files:
         merger.append(file)
 
-    output_path = 'combined3.pdf'
+    output_path = 'combined.pdf'
     merger.write(output_path)
     merger.close()
 
