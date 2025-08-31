@@ -1,5 +1,1 @@
-.env
-node_modules/
-.venv/
-
 backend/__pycache__/combine.cpython-313.pyc
